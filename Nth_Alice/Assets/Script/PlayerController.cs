@@ -2,14 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+
 public class PlayerController : MonoBehaviour
 {
 
     float distance = 10;
+
     void OnMouseDrag() {
         Vector3 mousePosition = new Vector3(Input.mousePosition.x, Screen.height/1.5f, distance); 
         Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition); 
         transform.position = objPosition;
     }
 
+    // 플레이어와 하우스 오브젝트의 충돌 -> 하우스 오브젝트 삭제
+    private void OnTriggerEnter2D(Collider2D other) {
+        GameObject director = GameObject.Find("GameDirector");
+        director.GetComponent<GameDirector>().DecreaseHp();
+
+        Destroy(other.gameObject);
+    }
 }
