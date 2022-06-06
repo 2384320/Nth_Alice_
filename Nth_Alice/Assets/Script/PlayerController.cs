@@ -12,6 +12,11 @@ public class PlayerController : MonoBehaviour
         Vector3 mousePosition = new Vector3(Input.mousePosition.x, Screen.height/1.5f, distance); 
         Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition); 
         transform.position = objPosition;
+
+        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position); 
+        if (pos.x < 0f) pos.x = 0f; 
+        if (pos.x > 1f) pos.x = 1f; 
+        transform.position = Camera.main.ViewportToWorldPoint(pos);
     }
 
     // 플레이어와 하우스 오브젝트의 충돌 -> 하우스 오브젝트 삭제
