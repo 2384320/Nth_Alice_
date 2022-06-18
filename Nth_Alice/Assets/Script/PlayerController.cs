@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
+    public bool gameOver = false;
 
     float distance = 10;
 
@@ -21,9 +22,18 @@ public class PlayerController : MonoBehaviour
 
     // 플레이어와 하우스 오브젝트의 충돌 -> 하우스 오브젝트 삭제
     private void OnTriggerEnter2D(Collider2D other) {
-        GameObject director = GameObject.Find("GameDirector");
-        director.GetComponent<GameDirector>().DecreaseHp();
+        if (gameOver == false) {
+            GameObject director = GameObject.Find("GameDirector");
+            director.GetComponent<GameDirector>().DecreaseHp();
+            if (other.transform.tag == "House") {
+                Destroy(other.gameObject);
+            } else if (other.transform.tag == "Arrow") {
+                Destroy(other.gameObject);
+            }
+        }
+    }
 
-        Destroy(other.gameObject);
+    public void StopTrigger() {
+        gameOver = true;
     }
 }
