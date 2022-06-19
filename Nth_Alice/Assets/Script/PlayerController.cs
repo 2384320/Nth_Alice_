@@ -5,10 +5,17 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
-    public bool gameOver = false;
 
+    AudioSource aud;
+    public AudioClip Coll;
+    public bool gameOver = false;
     float distance = 10;
 
+
+    private void Start()
+    {
+        this.aud = GetComponent<AudioSource>();
+    }
     void OnMouseDrag() {
         Vector3 mousePosition = new Vector3(Input.mousePosition.x, Screen.height/1.5f, distance); 
         Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition); 
@@ -30,6 +37,7 @@ public class PlayerController : MonoBehaviour
             } else if (other.transform.tag == "Arrow") {
                 Destroy(other.gameObject);
             }
+            this.aud.PlayOneShot(this.Coll);
         }
     }
 
