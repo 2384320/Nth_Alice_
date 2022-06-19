@@ -51,7 +51,6 @@ public class GameDirector : MonoBehaviour
 
         if (this.hp == 0) {
             gameOver = true;
-            this.alice.GetComponent<PlayerController>().StopTrigger();
 
             this.fadeCount += Time.deltaTime;
             
