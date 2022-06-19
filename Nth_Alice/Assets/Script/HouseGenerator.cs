@@ -12,7 +12,7 @@ public class HouseGenerator : MonoBehaviour
     void Update()
     {
         this.delta += Time.deltaTime;
-        if(this.delta > this.span)
+        if (this.delta > this.span)
         {
             this.delta = 0;
             GameObject go = Instantiate(housePrefab) as GameObject;

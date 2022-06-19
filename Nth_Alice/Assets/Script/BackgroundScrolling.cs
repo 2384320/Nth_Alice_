@@ -6,7 +6,6 @@ public class BackgroundScrolling : MonoBehaviour
 {
 	public float scrollSpeed = 0.5f;
 	public float newOffsetY;
-	public bool gameOver = false;
 	Material myMaterial;
 
 	void Start()
@@ -16,14 +15,8 @@ public class BackgroundScrolling : MonoBehaviour
 
 	void Update()
 	{
-		if (gameOver == false) {
-			this.newOffsetY = myMaterial.mainTextureOffset.y - scrollSpeed * Time.deltaTime;
-			Vector2 newOffset = new Vector2(0, newOffsetY);
-			myMaterial.mainTextureOffset = newOffset;
-		}
-	}
-
-	public void StopBackground() {
-		gameOver = true;
+		this.newOffsetY = myMaterial.mainTextureOffset.y - scrollSpeed * Time.deltaTime;
+		Vector2 newOffset = new Vector2(0, newOffsetY);
+		myMaterial.mainTextureOffset = newOffset;
 	}
 }
